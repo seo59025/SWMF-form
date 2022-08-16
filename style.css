@@ -441,6 +441,7 @@
     
     .checkbox .radioSpan {
         float: none;
+        display: inline-block;
         line-height: var(--header-height);
         padding: 0 3px;
         font-size: 10pt;
