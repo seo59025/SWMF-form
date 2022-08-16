@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>SWMF Inspection Form</title>
+		<link rel="stylesheet" href="style.css">
+		<script src="script.js"></script>
+	</head>
+	<body>
+        <p><strong>Make sure background graphics are turned on in the print dialog window in order to print properly!</strong></p>
+        <button class="print" onclick="formPrint()">Print</button>
+        <button class="csv" onclick="formCSV()">Generate CSV</button>
+        
+        <form class="screenHidden">
+            <fieldset class="score">
+                <legend>Score</legend>
+                <label>
+                    Monitor (1):
+                    <input name="score11" type="number" readonly />
+                </label>
+                <label>
+                    Maintenance (2):
+                    <input name="score12" type="number" readonly />
+                </label>
+                <label>
+                    Repair (3):
+                    <input name="score13" type="number" readonly />
+                </label>
+                <label>
+                    Total score:
+                    <input name="score1t" type="number" readonly />
+                </label>
+            </fieldset>
+        </form>
+        
+		<form>
+			<fieldset id="facilityFieldset">
+				<legend>Facility Information</legend>
+                <div class="tableRow">
+                    <label class="facilityName">
+                    Facility/subdivision name
+                    <input type="text" name="facilityName" required />
+                    </label>
+                    <label class="number">
+                    Facility number
+                    <input type="number" name="facilityNumber" min="1" max="999" required />
+                    </label>
+                    <label class="medium">
+                        Facility type
+                        <select name="facilityType">
+                            <option disabled selected value>-- select type --</option>
+                            <option value="wet pond">Wet Pond</option>
+                            <option value="dry pond">Dry Pond</option>
+                            <option value="foreflow bay">Foreflow Bay</option>
+                            <option value="wetland">Wetland</option>
+                        </select>
+                    </label>
+                    <fieldset class="mediumLong checkbox">
+                        <legend>Surrounding vegetation (pond buffer)</legend>
+                            <label class="c-label">
+                            <input type="checkbox" name="vegetation1" value="1" />
+                            <span class="radioSpan">Forested</span>
+                            </label>
+                            <label class="c-label">
+                            <input type="checkbox" name="vegetation2" value="1" />
+                            <span class="radioSpan">Shrubs</span>
+                            </label>
+                            <label class="c-label">
+                            <input type="checkbox" name="vegetation3" value="1" />
+                            <span class="radioSpan">Meadow</span>
+                            </label>
+                            <label class="c-label">
+                            <input type="checkbox" name="vegetation4" value="1" />
+                            <span class="radioSpan">Maintained grass</span>
+                            </label>
+                    </fieldset>
+                </div>
+			</fieldset>
+			<fieldset id="inspectionFieldset">
+				<legend>Inspection Information</legend>
+                <div class="tableRow">
+                    <label class="long">
+                    Inspector name(s)
+                    <input type="text" name="inspectorName" />
+                    </label>
+                    <label class="short">
+                    Date of inspection
+                    <input type="date" name="inspectionDate" required />
+                    </label>
+                    <label class="short">
+                    Time of inspection
+                    <input type="time" name="inspectionTime" required />
+                    </label>
+                    <label class="medium">
+                        Weather when inspected
+                        <select name="inspectionWeather">
+                            <option disabled selected value>-- select weather --</option>
+                            <option value="sunny">Sunny</option>
+                            <option value="cloudy">Cloudy</option>
+                            <option value="rainy">Rainy</option>
+                        </select>
+                    </label>
+                </div>
+			</fieldset>
+			<fieldset id="main01">
+				<legend>Outfalls</legend>
+				<fieldset class="main">
+					<legend>Dense vegetation</legend>
+					<label>
+					<input type="radio" name="main0101" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0101" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0101" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0101" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0101" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0101" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Outfall function</legend>
+					<label>
+					<input type="radio" name="main0102" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0102" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0102" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0102" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0102" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0102" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Manholes, frames, covers</legend>
+					<label>
+					<input type="radio" name="main0103" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0103" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0103" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0103" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0103" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0103" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Undercutting outlet</legend>
+					<label>
+					<input type="radio" name="main0104" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0104" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0104" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0104" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0104" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0104" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Erosion</legend>
+					<label>
+					<input type="radio" name="main0105" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0105" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0105" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0105" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0105" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0105" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Displaced rip-rap</legend>
+					<label>
+					<input type="radio" name="main0106" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0106" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0106" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0106" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0106" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0106" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Sediment deposits</legend>
+					<label>
+					<input type="radio" name="main0107" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0107" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0107" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0107" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0107" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0107" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Outfall obstructed</legend>
+					<label>
+					<input type="radio" name="main0108" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0108" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0108" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0108" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0108" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0108" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Trash rack obstructed</legend>
+					<label>
+					<input type="radio" name="main0109" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0109" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0109" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0109" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0109" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0109" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Trash rack corrosion</legend>
+					<label>
+					<input type="radio" name="main0110" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0110" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0110" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0110" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0110" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0110" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+			</fieldset>
+			<fieldset id="main02">
+				<legend>Principal Spillway</legend>
+				<fieldset class="main">
+					<legend>Minor spalling (&lt;3cm)</legend>
+					<label>
+					<input type="radio" name="main0201" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0201" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0201" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0201" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0201" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0201" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Major spalling (exposed rebar)</legend>
+					<label>
+					<input type="radio" name="main0202" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0202" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0202" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0202" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0202" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0202" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Joint failure</legend>
+					<label>
+					<input type="radio" name="main0203" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0203" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0203" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0203" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0203" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0203" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Loss of joint material</legend>
+					<label>
+					<input type="radio" name="main0204" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0204" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0204" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0204" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0204" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0204" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Leaking</legend>
+					<label>
+					<input type="radio" name="main0205" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0205" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0205" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0205" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0205" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0205" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Corrosion</legend>
+					<label>
+					<input type="radio" name="main0206" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0206" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0206" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0206" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0206" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0206" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Deficient protection</legend>
+					<label>
+					<input type="radio" name="main0207" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0207" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0207" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0207" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0207" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0207" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Misalignment or split seams/joints</legend>
+					<label>
+					<input type="radio" name="main0208" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0208" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0208" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0208" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0208" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0208" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+			</fieldset>
+			<fieldset id="main03">
+				<legend>Emergency Spillway</legend>
+				<fieldset class="main">
+					<legend>Vegetation growth or unauthorized plantings</legend>
+					<label>
+					<input type="radio" name="main0301" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0301" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0301" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0301" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0301" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0301" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Erosion or back cutting</legend>
+					<label>
+					<input type="radio" name="main0302" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0302" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0302" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0302" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0302" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0302" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Soft or boggy areas</legend>
+					<label>
+					<input type="radio" name="main0303" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0303" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0303" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0303" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0303" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0303" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Obstruction/debris</legend>
+					<label>
+					<input type="radio" name="main0304" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0304" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0304" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0304" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0304" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0304" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+			</fieldset>
+			<fieldset id="main04">
+				<legend>Permanent Pool (normal water line for wet pond)</legend>
+				<fieldset class="main">
+					<legend>Visible pollution</legend>
+					<label>
+					<input type="radio" name="main0401" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0401" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0401" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0401" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0401" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0401" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Shoreline and/or side slope erosion</legend>
+					<label>
+					<input type="radio" name="main0402" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0402" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0402" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0402" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0402" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0402" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Aquatic bench inadequately vegetated</legend>
+					<label>
+					<input type="radio" name="main0403" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0403" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0403" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0403" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0403" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0403" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Abnormally high or low water levels</legend>
+					<label>
+					<input type="radio" name="main0404" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0404" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0404" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0404" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0404" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0404" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Sediment/debris accumulation</legend>
+					<label>
+					<input type="radio" name="main0405" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0405" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0405" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0405" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0405" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0405" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+			</fieldset>
+			<fieldset id="main05">
+				<legend>Dry Storage (entire area of dry pond; freeboard of wet pond)</legend>
+				<fieldset class="main">
+					<legend>Turf sparse</legend>
+					<label>
+					<input type="radio" name="main0501" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0501" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0501" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0501" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0501" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0501" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Undesirable woody or vegetative growth</legend>
+					<label>
+					<input type="radio" name="main0502" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0502" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0502" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0502" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0502" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0502" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Low flow channels obstructed</legend>
+					<label>
+					<input type="radio" name="main0503" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0503" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0503" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0503" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0503" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0503" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Standing water or spots</legend>
+					<label>
+					<input type="radio" name="main0504" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0504" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0504" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0504" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0504" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0504" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Sediment/debris accumulation</legend>
+					<label>
+					<input type="radio" name="main0505" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0505" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0505" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0505" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0505" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0505" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Erosion</legend>
+					<label>
+					<input type="radio" name="main0506" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0506" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0506" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0506" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0506" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0506" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Small slope failures</legend>
+					<label>
+					<input type="radio" name="main0507" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0507" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0507" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0507" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0507" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0507" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+			</fieldset>
+			<fieldset id="main06">
+				<legend>Inflow Pipes (1)</legend>
+				<fieldset class="main">
+					<legend>Discharge undercutting outlet or displacing rip-rap</legend>
+					<label>
+					<input type="radio" name="main0601" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0601" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0601" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0601" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0601" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0601" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Discharge water causing erosion</legend>
+					<label>
+					<input type="radio" name="main0602" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0602" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0602" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0602" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0602" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0602" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Sediment/debris accumulation</legend>
+					<label>
+					<input type="radio" name="main0603" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0603" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0603" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0603" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0603" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0603" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Flow control devices operation</legend>
+					<label>
+					<input type="radio" name="main0604" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0604" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0604" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0604" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0604" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0604" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+			</fieldset>
+			<fieldset id="main07">
+				<legend>Inflow Pipes (2)</legend>
+				<fieldset class="main">
+					<legend>Discharge undercutting outlet or displacing rip-rap</legend>
+					<label>
+					<input type="radio" name="main0701" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0701" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0701" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0701" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0701" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0701" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Discharge water causing erosion</legend>
+					<label>
+					<input type="radio" name="main0702" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0702" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0702" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0702" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0702" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0702" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Sediment/debris accumulation</legend>
+					<label>
+					<input type="radio" name="main0703" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0703" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0703" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0703" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0703" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0703" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Flow control devices operation</legend>
+					<label>
+					<input type="radio" name="main0704" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0704" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0704" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0704" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0704" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0704" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+			</fieldset>
+			<fieldset id="main08">
+				<legend>Inflow Pipes (3)</legend>
+				<fieldset class="main">
+					<legend>Discharge undercutting outlet or displacing rip-rap</legend>
+					<label>
+					<input type="radio" name="main0801" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0801" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0801" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0801" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0801" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0801" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Discharge water causing erosion</legend>
+					<label>
+					<input type="radio" name="main0802" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0802" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0802" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0802" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0802" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0802" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Sediment/debris accumulation</legend>
+					<label>
+					<input type="radio" name="main0803" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0803" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0803" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0803" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0803" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0803" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Flow control devices operation</legend>
+					<label>
+					<input type="radio" name="main0804" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0804" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0804" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0804" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0804" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0804" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+			</fieldset>
+			<fieldset id="main09">
+				<legend>Pond buffer</legend>
+				<fieldset class="main">
+					<legend>Encroachment by structures</legend>
+					<label>
+					<input type="radio" name="main0901" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0901" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0901" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0901" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0901" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0901" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Clearing of vegetation</legend>
+					<label>
+					<input type="radio" name="main0902" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main0902" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main0902" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main0902" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main0902" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main0902" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+			</fieldset>
+			<fieldset id="main10">
+				<legend>Miscellaneous</legend>
+				<fieldset class="main">
+					<legend>Encroachment in pond area and/or easement area</legend>
+					<label>
+					<input type="radio" name="main1001" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main1001" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main1001" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main1001" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main1001" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main1001" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Fence Condition</legend>
+					<label>
+					<input type="radio" name="main1002" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main1002" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main1002" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main1002" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main1002" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main1002" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Safety signs</legend>
+					<label>
+					<input type="radio" name="main1003" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main1003" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main1003" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main1003" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main1003" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main1003" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Graffiti</legend>
+					<label>
+					<input type="radio" name="main1004" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main1004" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main1004" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main1004" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main1004" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main1004" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+				<fieldset class="main">
+					<legend>Public hazards</legend>
+					<label>
+					<input type="radio" name="main1005" value="0" checked required />
+					<span class="radioSpan">0</span></label>
+					<label>
+					<input type="radio" name="main1005" value="1" />
+					<span class="radioSpan">1</span></label>
+					<label>
+					<input type="radio" name="main1005" value="2" />
+					<span class="radioSpan">2</span></label>
+					<label>
+					<input type="radio" name="main1005" value="3" />
+					<span class="radioSpan">3</span></label>
+					<label>
+					<input type="radio" name="main1005" value="4" />
+					<span class="radioSpan">N/I</span></label>
+					<label>
+					<input type="radio" name="main1005" value="5" />
+					<span class="radioSpan">N/A</span></label>
+				</fieldset>
+			</fieldset>
+			<fieldset id="inspectionNotes">
+				<legend>Inspection Notes</legend>
+				<label for="notesTextarea" hidden style="display: none;">Inspection Notes</label>
+				<textarea id="notesTextarea" name="inspectionNotes" placeholder="Inspection notes, if any, go here."></textarea>
+			</fieldset>
+		</form>
+        
+        <form class="screenHidden">
+            <fieldset class="score">
+                <legend>Score</legend>
+                <label>
+                    Monitor (1):
+                    <input name="score21" type="number" readonly />
+                </label>
+                <label>
+                    Maintenance (2):
+                    <input name="score22" type="number" readonly />
+                </label>
+                <label>
+                    Repair (3):
+                    <input name="score23" type="number" readonly />
+                </label>
+                <label>
+                    Total score:
+                    <input name="score2t" type="number" readonly />
+                </label>
+            </fieldset>
+        </form>
+        
+        <p><strong>Make sure background graphics are turned on in the print dialog window in order to print properly!</strong></p>
+        <button class="print" onclick="formPrint()">Print</button>
+        <button class="csv" onclick="formCSV()">Generate CSV</button>
+	</body>
+</html>
