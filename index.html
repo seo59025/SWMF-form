@@ -11,7 +11,7 @@
         <button class="print" onclick="formPrint()">Print</button>
         <button class="csv" onclick="formCSV()">Generate CSV</button>
         
-        <form name="SWMF-form" class="screenHidden" data-netlify="true">
+        <form name="totals" class="screenHidden" data-netlify="true">
             <fieldset class="score">
                 <legend>Score</legend>
                 <label>
@@ -33,7 +33,7 @@
             </fieldset>
         </form>
         
-		<form>
+		<form name="inspection-form" data-netlify="true">
 			<fieldset id="facilityFieldset">
 				<legend>Facility Information</legend>
                 <div class="tableRow">
@@ -1272,6 +1272,7 @@
                     <input name="score2t" type="number" readonly />
                 </label>
             </fieldset>
+	<input type="submit" />
         </form>
         
         <p><strong>Make sure background graphics are turned on in the print dialog window in order to print properly!</strong></p>
