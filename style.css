@@ -294,6 +294,10 @@
     button + button {
         margin-left: 0px;
     }
+    
+    button[type="submit"] {
+        display: none;
+    }
 
     fieldset {
         border: solid black 2px;
